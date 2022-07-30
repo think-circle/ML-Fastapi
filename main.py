@@ -47,6 +47,18 @@ async def predict(input_parameters : model_input):
     
     return predictions
 
+
+@app.post("/predictprice")
+async def predictprice(inp_dict):
+    #input = input_parameters.json()
+    #inp_dict = json.loads(input)
+    inp_list = list(inp_dict.values())
+    X = np.array(inp_list).reshape(1,-1)
+    print("WE ARE HERE!!!!!!")
+    print(X)
+    predictions = model.predict(X).tolist()[0][0]
+    
+    return predictions
     
 
 if __name__ == "__main__":
